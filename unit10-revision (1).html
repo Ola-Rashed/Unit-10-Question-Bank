@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 10 Revision – Advanced Web Layout and Design</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+*{box-sizing:border-box;margin:0}
+:root{--bg:#ece8ff;--ink:#1b1340;--mut:#5d5482;--card:#fff;--pink:#ff4f9a;--mint:#3ddc97;--sun:#ffd23f;--blue:#9ec5fe;--line:#cfc7f5;--gl:rgba(124,58,237,.1)}
+@media(prefers-color-scheme:dark){:root{--bg:#12102b;--ink:#f1edff;--mut:#b4abd9;--card:#1e1a42;--line:#352f6b;--gl:rgba(167,139,250,.14)}}
+body{font:16px/1.6 "DM Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+.top{background-image:linear-gradient(var(--gl) 1px,transparent 1px),linear-gradient(90deg,var(--gl) 1px,transparent 1px);background-size:40px 40px;border-bottom:2px solid var(--ink)}
+.wrap{max-width:920px;margin:auto;padding:0 1rem}
+.top .wrap{padding-top:2.4rem;padding-bottom:1.6rem}
+.src{color:var(--mut);font-size:.9rem}
+h1{font:800 clamp(2rem,6vw,3.6rem)/1 Syne,sans-serif;margin:.3rem 0 .6rem}
+h1 span{color:var(--pink)}
+.hint{color:var(--mut)}
+.ctl{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:.8rem 0 .6rem}
+.sr{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+#q{flex:1 1 260px;font:inherit;padding:.7rem 1rem;border:2px solid var(--ink);border-radius:12px;background:var(--card);color:var(--ink)}
+#q:focus{outline:3px solid var(--pink)}
+label.inc{font-size:.9rem;display:flex;gap:.35rem;align-items:center;cursor:pointer}
+.tabs,.types{display:flex;gap:.4rem;overflow-x:auto;padding:.6rem 0 .1rem}
+button{font:inherit;cursor:pointer;color:var(--ink)}
+.tabs button{white-space:nowrap;border:2px solid var(--ink);background:var(--card);border-radius:99px;padding:.3rem .9rem;font-weight:700;font-size:.92rem;transition:all .2s ease}
+.tabs button:hover{transform:translateY(-2px)}
+.tabs button[aria-selected="true"]{background:var(--pink);color:#1b1340}
+.tabs b{font-weight:500;opacity:.75;margin-left:.3rem}
+.types button,.tog{border:1px solid var(--line);background:transparent;border-radius:8px;padding:.2rem .7rem;font-size:.85rem}
+.types button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tog{margin-left:auto}
+.meta{font-size:.9rem;color:var(--mut);margin:.8rem 0 .2rem}
+details.q{background:var(--card);border:2px solid var(--ink);border-radius:14px;margin:.6rem 0;overflow:hidden}
+details.q[open]{box-shadow:4px 4px 0 var(--ink)}
+summary{display:flex;gap:.7rem;align-items:flex-start;padding:.8rem 1rem;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";margin-left:auto;font:700 1.4rem/1 Syne,sans-serif;color:var(--pink)}
+details[open] summary::after{content:"−"}
+summary:focus-visible{outline:3px solid var(--pink);outline-offset:-3px}
+.n{flex:none;min-width:2.1rem;height:2.1rem;border-radius:99px;background:var(--ink);color:var(--bg);font-weight:700;display:grid;place-items:center;font-size:.85rem}
+.ty{flex:none;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:.1rem .55rem;border-radius:6px;color:#1b1340;margin-top:.25rem}
+.ty.T{background:var(--sun)}.ty.M{background:var(--mint)}.ty.C{background:var(--blue)}.ty.A{background:var(--pink)}
+.qt{font-weight:600}
+.ls{flex:none;font-size:.72rem;color:var(--mut);margin-top:.3rem}
+.a{padding:.2rem 1rem 1rem 3.8rem;border-top:1px dashed var(--line)}
+.v{font:800 1.3rem Syne,sans-serif;margin-top:.7rem}
+.v.ok{color:#14915c}.v.no{color:#d6336c}
+@media(prefers-color-scheme:dark){.v.ok{color:var(--mint)}.v.no{color:var(--pink)}}
+.fill{color:var(--mut);margin-top:.2rem}.fill b{color:var(--ink);border-bottom:3px solid var(--mint)}
+ol.o{margin-top:.7rem;padding-left:1.4rem;list-style:lower-alpha}
+ol.o li{padding:.2rem .6rem;border-radius:8px;margin:.2rem 0}
+ol.o li.c{background:var(--mint);color:#1b1340;font-weight:700;list-style-position:outside}
+ol.o li.c::after{content:"  ✓"}
+ol.al{margin-top:.7rem;padding-left:1.4rem}
+ol.al.one{list-style:none;padding-left:0;font-weight:700}
+ol.al li{padding:.15rem 0}
+.note{color:var(--mut);font-size:.92rem;margin-top:.3rem}
+mark{background:var(--sun);color:#1b1340;border-radius:3px;padding:0 2px}
+.empty{text-align:center;padding:3rem 1rem;color:var(--mut)}
+footer{text-align:center;color:var(--mut);padding:2rem 1rem 3rem;font-size:.9rem}
+@media(max-width:560px){.a{padding-left:1rem}summary{flex-wrap:wrap}.ty{margin-top:0}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap">
+ <p class="src">U2 Programming – Question Bank · G2 · S1 · TPK 14 &amp; TPK 15</p>
+ <h1>Unit 10 <span>Revision</span></h1>
+ <p class="hint">Advanced Web Layout and Design ·</p>
+</div></div>
+
+<div class="ctl"><div class="wrap">
+ <div class="sr">
+  <input id="q" type="search" placeholder="Search questions… " aria-label="Search questions" autocomplete="off">
+  <label class="inc"><input type="checkbox" id="inc"> Search in answers too</label>
+ </div>
+ <div class="tabs" id="tabs" role="tablist"></div>
+ <div class="types" id="types"></div>
+</div></div>
+
+<main class="wrap" id="list" aria-live="polite"></main>
+<footer>All questions and answers are taken from the Question Bank PDF.</footer>
+
+<script>
+const raw=`1|T|The cross axis is always perpendicular to the main axis.|True
+2|T|flex-direction: row-reverse places items from right to left.|True
+3|T|The default value of flex-wrap is wrap.|False
+4|T|flex-grow: 0 means the item will not grow to fill extra space.|True
+5|T|display: inline-grid creates a block-level container.|False
+6|T|The fr unit stands for "Fraction."|True
+7|T|justify-content and align-content require extra space in the grid container to have a visible effect.|True
+8|T|grid-template-rows defines only implicit row heights.|False
+9|T|grid-column: span 2 makes an item span 2 columns.|True
+10|T|A dot (.) in grid-template-areas means a named area.|False
+11|M|Which value of display creates a block-level flex container?|flex¦inline-flex¦block¦grid|A
+12|M|Which property defines the direction of the main axis?|justify-content¦align-items¦flex-direction¦flex-wrap|C
+13|M|Which justify-content value centers items along the main axis?|flex-start¦center¦stretch¦baseline|B
+14|M|What is the default value of flex-shrink?|0¦2¦auto¦1|D
+15|M|CSS Grid is a:|Two-dimensional layout system¦JavaScript framework¦Animation tool¦One-dimensional layout system|A
+16|M|What is the primary advantage of CSS Grid over float-based layouts?|It allows for 3D transformations¦It requires JavaScript¦It eliminates the need for clearfix hacks¦It only works with flexbox|C
+17|M|What does repeat(3, 1fr) do?|Creates 3 rows with 1px height¦Creates 3 equal-width columns¦Repeats the first column 3 times¦Merges 3 cells into one|B
+18|M|The gap property is shorthand for:|margin and padding¦line-height and letter-spacing¦grid-gap and flex-gap¦row-gap and column-gap|D
+19|M|How do you represent an empty cell in grid-template-areas?|. (dot)¦empty¦null¦(space)|A
+20|M|Which property assigns a grid item to a named area?|grid-name¦grid-template¦grid-area¦grid-cell|C
+21|C|In Flexbox, the ______ axis is always perpendicular to the main axis.|cross
+22|C|The ______ property controls whether flex items stay on one line or wrap onto multiple lines.|flex-wrap
+23|C|The ______ property overrides the align-items value for a single flex item.|align-self
+24|C|The default value of the order property is ______.|0
+25|C|The ______ property sets the initial size of a flex item before the remaining space is distributed.|flex-basis
+26|C|In CSS Grid, the ______ unit represents a fraction of the available space in the grid container.|fr
+27|C|The ______ property defines the height of the rows that are created implicitly in a grid.|grid-auto-rows
+28|C|In CSS Grid, align-content aligns the grid along the ______ axis (top to bottom).|block
+29|C|Grid lines are numbered starting from ______.|1
+30|C|The ______ property on the grid container is used to name areas and build the layout visually.|grid-template-areas
+31|A|Define Flexbox.|Flexbox is a layout model in CSS.¦It makes it easier to design flexible and responsive layout structures without using floats or positioning.
+32|A|Explain two reasons why CSS Flexbox is used.|Easy 1-dimensional layout alignment.¦Flexible space distribution.¦Note: Also accepted: cleaner, more semantic code.
+33|A|Explain the relationship between a Flex Container and Flex Items.|The flex container is the parent element (the one with display: flex).¦The flex items are the immediate children of the flex container.
+34|A|Compare between display: flex and display: inline-flex.|display: flex creates a block-level flex container.¦display: inline-flex creates an inline-level flex container.
+35|A|Mention the four values of flex-direction and explain each.|row (default): items are placed horizontally from left to right.¦row-reverse: items are placed horizontally from right to left.¦column: items are placed vertically from top to bottom.¦column-reverse: items are placed vertically from bottom to top.
+36|A|Compare between justify-content and align-items, and state the default value of align-items.|justify-content distributes the children across the Main Axis.¦align-items distributes the children across the Cross Axis.¦The default value of align-items is stretch, which stretches the elements along the whole cross axis.
+37|A|Compare between justify-content: space-between and justify-content: space-around.|space-between spreads the items along the axis with space only between them (none at the edges).¦space-around spreads the items with space between them and also around the outer edges.
+38|A|Compare between flex-wrap: nowrap and flex-wrap: wrap.|nowrap (default) keeps all items on a single line (they may overflow).¦wrap allows items to move to multiple lines as needed.
+39|A|Define align-self and explain its use.|align-self overrides the align-items value for just a single flex item.¦It controls the alignment of that item on the cross axis.
+40|A|Explain the order property and its default value.|order controls the order in which flex items appear in the container, by number and not by HTML order.¦The default value is 0, and lower numbers appear first.
+41|A|Explain flex-grow, flex-basis and flex-shrink, and give the default value of each.|flex-grow: how much an item grows relative to the others when there is extra space (default 0).¦flex-basis: the initial size of an item before the remaining space is distributed (default auto).¦flex-shrink: how much an item shrinks when there is not enough space (default 1; 0 prevents shrinking).
+42|A|Define CSS Grid and state how it differs from Flexbox.|CSS Grid is a powerful layout system in CSS used to create complex, responsive web designs.¦It is a two-dimensional system that handles both columns and rows.¦Flexbox is largely a one-dimensional system (a row or a column at a time).
+43|A|Discuss four problems of floats that CSS Grid solves.|No more clearfix hacks.¦No collapsing parent elements.¦No unexpected wrapping behavior.¦Precise control over item placement.
+44|A|Compare between display: grid and display: inline-grid.|display: grid creates a block-level grid container that takes the full available width.¦display: inline-grid creates an inline-level grid container that takes only the necessary width.
+45|A|Define Grid Lines and Grid Tracks.|Grid Lines are the lines that define the boundaries between columns and rows.¦A Grid Track is a column or a row (the space between two adjacent grid lines).
+46|A|Explain the grid-template-columns property with an example.|It defines the number and size of the columns in a CSS Grid layout.¦Example: grid-template-columns: 100px 150px 200px; creates 3 columns with widths 100px, 150px and 200px.
+47|A|Explain how the "auto" keyword works in grid-template-columns.|auto lets the browser determine the column width automatically from the available space and content.¦Example: 100px auto 200px - the middle column takes the remaining available space.
+48|A|Define the "fr" unit and give an example.|fr represents a fraction of the available space in the grid container.¦Example: 1fr 2fr - the second column takes twice the space of the first.
+49|A|Explain the meaning of: grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));|minmax(300px, 1fr) makes each column at least 300px wide.¦Columns can expand to fill the available space.¦auto-fit creates as many columns as possible, so the number of columns adjusts to the screen size.
+50|A|Compare between grid-template-rows and grid-auto-rows.|grid-template-rows explicitly defines the heights of the rows you set up.¦grid-auto-rows defines the height of the implicitly created rows (extra rows the browser creates automatically).
+51|A|Explain the gap property in CSS Grid.|gap is a shorthand for row-gap and column-gap.¦row-gap sets the space between rows; column-gap sets the space between columns.
+52|A|Compare between justify-content and align-content in CSS Grid.|justify-content aligns the whole grid along the Inline Axis (left to right), while align-content aligns it along the Block Axis (top to bottom).¦Both only have a visible effect if the grid container has extra space (align-content needs a defined height).
+53|A|Explain the shorthand properties grid-column and grid-row, with an example for each.|grid-column: start-line / end-line; is a shorthand for grid-column-start and grid-column-end (e.g., grid-column: 1 / 5;).¦grid-row: start-line / end-line; is a shorthand for grid-row-start and grid-row-end (e.g., grid-row: 1 / 4;).
+54|A|Compare between grid-column: 1 / 5; and grid-column: 1 / span 3;.|1 / 5 specifies the exact end line (line 5), so the item spans 4 columns.¦1 / span 3 starts at line 1 and spans 3 columns (ending at line 4).
+55|A|Define the span keyword in CSS Grid and explain its use.|span is used with grid-column or grid-row to make an item stretch across multiple tracks starting from its position.¦Example: grid-column: 1 / span 3; makes the item span 3 columns starting at line 1.
+56|A|Write the CSS that moves Box 1 to start at column line 3 and row line 3 (ending at column line 5).|grid-column: 3 / 5;¦grid-row: 3 / 4;¦Note: Combining both properties moves the item horizontally and vertically.
+57|A|Explain how the :nth-child() pseudo-class can be used with Grid spanning.|:nth-child() targets a specific grid item (e.g., .box:nth-child(5)).¦It applies the grid-column / grid-row spanning rules to only that item.
+58|A|Define grid-template-areas and explain its purpose.|grid-template-areas is a property on the grid container that allows you to build the layout visually by naming the grid cells.¦Each string represents a row of the grid.
+59|A|Explain the purpose of a dot (.) and of repeating a name in grid-template-areas.|A dot (.) indicates an empty cell that is not assigned to any named area.¦Repeating a name across cells makes that area span multiple cells.
+60|A|Explain the grid-area property and how it is used.|grid-area is applied to a grid item to assign it to a named area.¦The area is defined in the parent's grid-template-areas (e.g., grid-area: header;).
+61|A|How many rows and columns does this code create? grid-template-areas: "a a" "b c";|Two rows.¦Two columns.
+62|T|A pseudo-class is used to style an element in a special state, such as :hover.|True
+63|T|CSS Animations run automatically without needing a trigger.|True
+64|T|A CSS transition needs a trigger such as :hover or :focus to start.|True
+65|T|h1 ~ p selects only the first <p> after an <h1>.|False
+66|T|::before and ::after use the content property to specify the content to insert.|True
+67|T|The transform property changes the actual position of the element in the HTML flow.|False
+68|T|GitHub Pages can host dynamic websites with databases.|False
+69|T|The command "git add ." stages all changed files.|True
+70|T|The .blogs-container in the blog project uses display: grid to arrange the cards.|False
+71|T|CSS Variables are declared with two dashes, such as --main-color: red;|True
+72|M|Which pseudo-class styles a link at the moment it is clicked?|:hover¦:visited¦:focus¦:active|D
+73|M|What does ::after do in CSS?|Inserts content as the last child of the selected element¦Inserts content before an element¦Styles the first letter¦Highlights selected text|A
+74|M|Which property makes a CSS value change smoothly over a given duration, for example on hover?|animation¦transform¦transition¦@keyframes|C
+75|M|How are CSS Variables declared?|$main-color: red;¦--main-color: red;¦var(--main-color);¦@variable main-color: red;|B
+76|M|Which selector targets only direct children?|>¦(space)¦+¦~|A
+77|M|Which transform function changes the size of an element?|rotate()¦scale()¦translate()¦skew()|B
+78|M|What is GitHub primarily used for?|Social networking¦Code storage and collaboration¦Online gaming¦Video streaming|B
+79|M|Which command initializes a new Git repository?|git start¦git new¦git create¦git init|D
+80|M|Which CSS property in the blog project makes the card image fill its box without distortion?|object-fit¦image-fit¦background-size¦box-sizing|A
+81|M|For personal sites, GitHub Pages repositories should be named:|my-website¦username.github.com¦username.github.io¦pages-username|C
+82|C|A ______ is a keyword added to a selector that specifies a special state of the selected elements.|pseudo-class
+83|C|The ______ pseudo-class selects an element when the mouse pointer is over it.|:hover
+84|C|The ______ pseudo-element applies styles to the part of a document highlighted by the user.|::selection
+85|C|______ defines the stages of a CSS animation.|@keyframes
+86|C|The ______ property can rotate, scale, move or skew an element without changing its position in the HTML flow.|transform
+87|C|A CSS Variable is read using the ______() function, for example color: ______(--dark);|var
+88|C|The ______ sibling combinator (+) selects the first <p> immediately after an <h1>.|adjacent
+89|C|GitHub is built on top of the ______ version control system.|Git
+90|C|______ is a free service that hosts static websites directly from a GitHub repository.|GitHub Pages
+91|C|The Git command ______ stages all changed files.|git add .
+92|A|Define a Pseudo-class and give an example.|A pseudo-class is a keyword added to a selector that specifies a special state of the selected elements.¦Example: :hover changes a button's color when the pointer is over it.
+93|A|Compare between :hover and :active.|:hover selects an element when the mouse pointer is over it.¦:active selects and styles a link at the moment it is clicked.
+94|A|Explain the :checked and :disabled pseudo-classes.|:checked matches every checked input element (such as a checked radio button or checkbox).¦:disabled represents elements that are disabled and cannot be activated.
+95|A|Explain the :first-child and :nth-child(n) pseudo-classes.|:first-child styles an element that is the first child of its parent.¦:nth-child(n) matches the nth child of its parent, where n can be a number, a keyword or a formula.
+96|A|Define a Pseudo-element and explain how it differs from a Pseudo-class.|A pseudo-element is used to style specific parts of an element.¦A pseudo-element is written with double colons (e.g., ::before).¦A pseudo-class styles an element based on its state and uses a single colon (e.g., :hover).
+97|A|Explain the ::before and ::after pseudo-elements.|::before inserts content before the content of the selected element.¦::after inserts content as the last child of the selected element.¦Both use the content property to specify what is inserted.
+98|A|Explain the ::selection pseudo-element.|::selection applies styles to the part of the document that has been highlighted by the user.
+99|A|Compare between CSS Transition and CSS Animation.|A transition requires a trigger (like :hover, :focus or a JavaScript event).¦A transition defines only a start and an end state (a single change per trigger).¦An animation runs automatically with no trigger needed.¦An animation uses @keyframes to define multiple stages, with looping and more control over timing.
+100|A|Write the CSS that smoothly changes the background color of a div to orange over 0.5 seconds when it is hovered.|div { transition: background-color 0.5s ease; }¦div:hover { background-color: orange; }
+101|A|Explain the purpose of @keyframes with an example.|@keyframes defines the stages of a CSS animation.¦Example: @keyframes moveRight { 0% { left: 0; } 100% { left: 100px; } } defines the start and end positions.
+102|A|Define the transform property.|The transform property visually manipulates elements (rotating, scaling, moving or skewing them).¦It does this without changing the element's actual position in the HTML flow.
+103|A|Explain the four common transform functions: translate(), rotate(), scale() and skew().|translate(x, y) moves an element horizontally and/or vertically.¦rotate(angle) rotates the element clockwise or counter-clockwise.¦scale(x, y) changes the size of the element.¦skew(x, y) slants the element along the X and/or Y axis.
+104|A|Define CSS Variables and explain their benefit.|CSS Variables store reusable values (like colors, sizes and fonts) in one place.¦They make the code cleaner, more consistent and easier to maintain.
+105|A|Write the CSS to declare a variable named --main-color with the value red, then use it to color the text of a paragraph.|:root { --main-color: red; }¦p { color: var(--main-color); }
+106|A|Mention the four types of CSS combinators, with an example for each.|Descendant selector (space): article p¦Child selector (>): ul > li¦Adjacent sibling selector (+): h1 + p¦General sibling selector (~): h1 ~ p
+107|A|Compare between h1 + p and h1 ~ p.|h1 + p selects only the first <p> immediately after an <h1>.¦h1 ~ p selects all <p> siblings that come after an <h1>.
+108|A|Define GitHub and explain what it is built on.|GitHub is a popular platform for developers to store, manage, share and collaborate on code.¦It is built on top of the Git version control system.
+109|A|Discuss two benefits of using GitHub.|Backup: your code is safely stored in the cloud.¦Collaboration: work effectively with teams on large projects.¦Note: Also accepted: contributing to open-source projects, showcasing your work to employers, learning from other developers' code.
+110|A|Define GitHub Pages and explain what it is used for.|GitHub Pages is a free service that hosts websites directly from a GitHub repository.¦It is used to host static websites (HTML, CSS, JavaScript).
+111|A|Define a "commit" and a "push" in Git/GitHub.|A commit is a saved change to your code.¦A push is uploading the local committed changes to GitHub.
+112|A|Mention the three prerequisites for deploying a site with GitHub Pages.|A GitHub account.¦A basic understanding of Git.¦A static website (HTML, CSS, JavaScript files).
+113|A|Write, in order, the five Git commands used to upload a website to GitHub.|git init¦git add .¦git commit -m "Initial website upload"¦git remote add origin https://github.com/username/repo-name.git¦git push -u origin main
+114|A|Explain the four steps to enable GitHub Pages for a repository.|Go to the repository's Settings tab.¦In the left sidebar, click Pages.¦Under Source, select the branch (main or master) and the folder (/ root or /docs).¦Click Save (then wait a few minutes for deployment).
+115|A|How should the repository be named for a personal site and for a project site?|Personal/organization site: username.github.io (live at https://username.github.io).¦Project site: any name, e.g., my-website (live at https://username.github.io/repo-name).
+116|A|In the blog project, mention four elements placed inside each blog card (<a class="post">).|<img> - the blog post image.¦<small> - the category tag.¦<h2> - the blog post title.¦<p class="description"> - the short description.¦Note: A div.more ("Read" with an arrow icon) is also inside the card.
+117|A|In the blog project, how is the hover effect on a card (.post) created?|transition: all 0.3s ease; gives a smooth effect.¦On .post:hover, transform: scale(1.05) enlarges the card and box-shadow adds a shadow.
+118|A|Which CSS property, and which value, keeps the card image filling its box without distortion?|object-fit: cover;
+119|A|How does the .container center the heading and the blog cards in the blog project?|It uses display: flex with flex-direction: column.¦It uses justify-content: center and align-items: center.`;
+
+const LS=[['Lesson 1 · Flexbox','1-4,11-14,21-25,31-41'],['Lesson 2 · CSS Grid','5-8,15-18,26-28,42-52'],['Lesson 3 · Grid Placement & Areas','9-10,19-20,29-30,53-61'],['Lesson 4 · Pseudo, Animation, Transform, Variables, Combinators','62-67,71-77,82-88,92-107'],['Lesson 5 · Blog Project & GitHub','68-70,78-81,89-91,108-119']];
+const TY={T:'True / False',M:'Choose',C:'Complete',A:'Answer'};
+const lesson={};LS.forEach((l,i)=>l[1].split(',').forEach(r=>{const[a,b=a]=r.split('-').map(Number);for(let n=a;n<=b;n++)lesson[n]=i+1}));
+const Q=raw.split('\n').map(l=>{const p=l.split('|');return{n:+p[0],t:p[1],q:p[2],a:p[3],k:p[4]}});
+const $=s=>document.querySelector(s),esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const S={tab:0,type:'all',term:'',inc:false};
+
+const aText=x=>x.t=='M'?x.a.split('¦')['ABCD'.indexOf(x.k)]:x.a.replace(/¦/g,' ');
+const qText=x=>x.q+(x.t=='M'?' '+x.a.replace(/¦/g,' '):'');
+function hit(x,term){if(!term)return 0;const t=term.toLowerCase();
+ if(String(x.n)===t||qText(x).toLowerCase().includes(t))return 1;
+ return S.inc&&aText(x).toLowerCase().includes(t)?2:0}
+const ok=(x,skipTab)=>(S.type=='all'||x.t==S.type)&&(skipTab||!S.tab||lesson[x.n]==S.tab)&&(!S.term||hit(x,S.term));
+let re=null;
+const hl=s=>re?s.split(re).map((p,i)=>i%2?`<mark>${esc(p)}</mark>`:esc(p)).join(''):esc(s);
+
+function ans(x){
+ if(x.t=='T')return `<p class="v ${x.a=='True'?'ok':'no'}">${x.a}</p>`;
+ if(x.t=='M')return `<ol class="o">${x.a.split('¦').map((o,i)=>`<li class="${'ABCD'[i]==x.k?'c':''}">${hl(o)}</li>`).join('')}</ol>`;
+ if(x.t=='C')return `<p class="v ok">${hl(x.a)}</p><p class="fill">${esc(x.q).replace(/_{3,}/g,'<b>'+esc(x.a)+'</b>')}</p>`;
+ const p=x.a.split('¦'),notes=p.filter(t=>/^Note:/.test(t)),m=p.filter(t=>!/^Note:/.test(t));
+ return `<ol class="al${m.length<2?' one':''}">${m.map(t=>`<li>${S.inc?hl(t):esc(t)}</li>`).join('')}</ol>${notes.map(t=>`<p class="note">${S.inc?hl(t):esc(t)}</p>`).join('')}`}
+
+function item(x){
+ const open=S.term&&hit(x,S.term)==2&&!hit({...x,a:'',t:'T'},S.term)?' open':'';
+ return `<details class="q"${open}><summary><span class="n">${x.n}</span><span class="ty ${x.t}">${TY[x.t]}</span><span class="qt">${hl(x.q)}</span><span class="ls">L${lesson[x.n]}</span></summary><div class="a">${ans(x)}</div></details>`}
+
+function render(){
+ re=S.term?new RegExp('('+S.term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'):null;
+ const tabs=[['All',Q.filter(x=>ok(x,1)).length],...LS.map((l,i)=>[l[0],Q.filter(x=>ok(x,1)&&lesson[x.n]==i+1).length])];
+ $('#tabs').innerHTML=tabs.map((t,i)=>`<button role="tab" data-t="${i}" aria-selected="${S.tab==i}">${t[0]}<b>${t[1]}</b></button>`).join('');
+ const types=[['all','All types'],['T','True / False'],['M','Choose'],['C','Complete'],['A','Answer']];
+ $('#types').innerHTML=types.map(t=>`<button data-y="${t[0]}" aria-pressed="${S.type==t[0]}">${t[1]}</button>`).join('')+'<button class="tog" id="tog">Show / hide all answers</button>';
+ const r=Q.filter(x=>ok(x));
+ $('#list').innerHTML=`<p class="meta">${r.length} question${r.length==1?'':'s'}${S.term?` matching “${esc(S.term)}”`:''}</p>`+(r.length?r.map(item).join(''):'<p class="empty">No questions match your search.</p>')}
+
+$('#q').oninput=e=>{const v=e.target.value.trim();if(v&&!S.term)S.tab=0;S.term=v;render()};
+$('#inc').onchange=e=>{S.inc=e.target.checked;render()};
+document.addEventListener('click',e=>{
+ const t=e.target.closest('[data-t]'),y=e.target.closest('[data-y]');
+ if(t){S.tab=+t.dataset.t;render()}
+ else if(y){S.type=y.dataset.y;render()}
+ else if(e.target.id=='tog'){const d=[...document.querySelectorAll('details.q')],any=d.some(x=>!x.open);d.forEach(x=>x.open=any)}});
+render();
+</script>
+</body>
+</html>
